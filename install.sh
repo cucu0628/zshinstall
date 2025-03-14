@@ -10,7 +10,7 @@ if [ "$distro" == "fedora" ]; then
   sudo dnf install -y zsh git curl eza fzf
 elif [ "$distro" == "debian" ]; then
   sudo apt update -y
-  sudo apt install -y zsh git curl eza fzf
+  sudo apt install -y zsh git curl eza fzf neofetch
 else
   echo "Nem támogatott disztró. Kilépés."
   exit 1
@@ -26,14 +26,17 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
 
-# Install fastfetch
+# Install fastfetch or fallback to neofetch
 if [ ! -d "$HOME/fastfetch" ]; then
   git clone https://github.com/fastfetch-cli/fastfetch.git $HOME/fastfetch
   cd $HOME/fastfetch
   mkdir build && cd build
   cmake ..
   make -j$(nproc)
-  sudo make install
+  sudo make install || {
+    echo "Fastfetch telepítése sikertelen, Neofetch lesz használva."
+    sudo apt install -y neofetch
+  }
   cd ~
 fi
 
@@ -52,7 +55,11 @@ export ZSH="\$HOME/.oh-my-zsh"
 ZSH_THEME="fino"
 plugins=(git dnf zsh-autosuggestions zsh-syntax-highlighting)
 source \$ZSH/oh-my-zsh.sh
-fastfetch -c \$HOME/.config/fastfetch/config-compact.jsonc
+if command -v fastfetch &> /dev/null; then
+  fastfetch -c \$HOME/.config/fastfetch/config-compact.jsonc
+else
+  neofetch
+fi
 source <(fzf --zsh)
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
