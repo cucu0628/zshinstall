@@ -10,7 +10,13 @@ if [ "$distro" == "fedora" ]; then
   sudo dnf install -y zsh git curl eza fzf
 elif [ "$distro" == "debian" ]; then
   sudo apt update -y
-  sudo apt install -y zsh git curl eza fzf neofetch
+  sudo apt install -y zsh git curl fzf neofetch
+  # Install eza manually
+  if ! command -v eza &> /dev/null; then
+    wget https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
+    sudo tar -xvzf eza_x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin/ --strip-components=1
+    rm eza_x86_64-unknown-linux-gnu.tar.gz
+  fi
 else
   echo "Nem támogatott disztró. Kilépés."
   exit 1
