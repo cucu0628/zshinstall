@@ -89,3 +89,5 @@ EOF
 
 # Reload Zsh
 exec zsh
+exit
+exit
