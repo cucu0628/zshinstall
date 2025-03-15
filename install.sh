@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Ask for distro
@@ -78,6 +79,13 @@ alias pipes='./pipes.sh/pipes.sh'
 alias cl='clear'
 alias mozi='python ./mozi/Untitled-1.py'
 EOF
+
+if [ ! -d "$HOME/pipes.sh" ]; then
+  git clone https://github.com/pipeseroni/pipes.sh.git $HOME/pokemon-colorscripts
+  cd pipes.sh
+  sudo chmod u+x pipes.sh
+  cd
+fi
 
 # Reload Zsh
 exec zsh
