@@ -53,6 +53,13 @@ if [ ! -d "$HOME/pokemon-colorscripts" ]; then
   sudo cp $HOME/pokemon-colorscripts/pokemon-colorscripts /usr/local/bin/
 fi
 
+if [ ! -d "$HOME/pipes.sh" ]; then
+  git clone https://github.com/pipeseroni/pipes.sh.git
+  cd pipes.sh
+  sudo chmod u+x pipes.sh
+  cd
+fi
+
 # Set Zsh as default shell
 chsh -s $(which zsh)
 
@@ -79,13 +86,6 @@ alias pipes='./pipes.sh/pipes.sh'
 alias cl='clear'
 alias mozi='python ./mozi/Untitled-1.py'
 EOF
-
-if [ ! -d "$HOME/pipes.sh" ]; then
-  git clone https://github.com/pipeseroni/pipes.sh.git $HOME/pokemon-colorscripts
-  cd pipes.sh
-  sudo chmod u+x pipes.sh
-  cd
-fi
 
 # Reload Zsh
 exec zsh
