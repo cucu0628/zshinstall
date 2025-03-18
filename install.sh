@@ -84,7 +84,7 @@ alias ll='eza -al --icons'
 alias lt='eza -a --tree --level=1 --icons'
 alias pipes='./pipes.sh/pipes.sh'
 alias cl='clear'
-alias mozi='python ./mozi/Untitled-1.py'
+alias shut='sudo shutdown now'
 EOF
 
 # Reload Zsh
