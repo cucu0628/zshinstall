@@ -9,4 +9,4 @@ sudo chmod u+x ./zshinstall/install.sh
 If install done restart your computer.
 
 ## Alias
-All alas in `~/.zshrc`
+All alias in `~/.zshrc`
