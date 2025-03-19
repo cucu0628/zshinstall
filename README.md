@@ -2,6 +2,7 @@
 ## Install
 > [!WARNING]
 > If you install it, all history will be lost. It is recommended to create a new user.
+
 Install command:
 ```
 git clone https://github.com/cucu0628/zshinstall.git
